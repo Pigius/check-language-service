@@ -1,0 +1,37 @@
+service: check-language-service
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  region: eu-central-1
+  runtime: ruby2.7
+  memorySize: 256
+  timeout: 10
+  logRetentionInDays: 30
+  lambdaHashingVersion: 20201221
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - comprehend:DetectDominantLanguage
+          Resource:
+            - '*'
+
+functions:
+  check-language:
+    handler: src/handlers/check_language/handler.run
+    environment:
+      region: ${self:provider.region}
+    events:
+      - http:
+          method: post
+          path: language
+    
+plugins:
+  - serverless-ruby-layer
+
+custom:
+  rubyLayer:
+    include_functions:
+      - check-language

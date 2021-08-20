@@ -1,0 +1,13 @@
+{
+  "name": "check-language-service",
+  "version": "1.0.0",
+  "description": "Ruby example that make usage of Amazon Comprehend to detects language based on the provided text. Make usage of  AWS Lambda, Amazon Comprehend, API Gateway, and Step Functions.",
+  "author": "Daniel Aniszkiewicz",
+  "license": "MIT",
+  "dependencies": {
+    "serverless-ruby-layer": "^1.5.0"
+  },
+  "devDependencies": {
+    "serverless": "^2.46.0"
+  }
+}
